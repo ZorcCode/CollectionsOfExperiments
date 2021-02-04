@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CirclularProgressButton">
+        <attr name="progressColor" format="color"/>
+        <attr name="progressBackgroundColor" format="color"/>
+        <attr name="buttonColor" format="color"/>
+        <attr name="shadowColor" format="color"/>
+        <attr name="progressBarWidth" format="dimension"/>
+        <attr name="shadowPadding" format="dimension"/>
+        <attr name="mainText" format="string"/>
+        <attr name="successText" format="string"/>
+        <attr name="android:textSize" format="dimension"/>
+        <attr name="android:duration" format="integer"/>
+
+    </declare-styleable>
+</resources>
