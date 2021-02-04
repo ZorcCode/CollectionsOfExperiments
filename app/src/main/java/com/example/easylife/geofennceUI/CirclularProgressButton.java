@@ -69,9 +69,9 @@ public class CirclularProgressButton extends View implements View.OnTouchListene
     ValueAnimator animator;
     private void animateProgress(){
         if(reverse)
-            animator = ValueAnimator.ofFloat(360,0);
+            animator = ValueAnimator.ofFloat(progress,0);
         else
-            animator = ValueAnimator.ofFloat(0,360);
+            animator = ValueAnimator.ofFloat(progress,360);
         animator.addUpdateListener(animation -> {
             float value = (float) animation.getAnimatedValue();
             progress = value;
@@ -88,6 +88,7 @@ public class CirclularProgressButton extends View implements View.OnTouchListene
                 if ((!reverse && progress==360) || (reverse && progress==0)) {
                     if (callback!=null)
                     callback.onComplete();
+//                    if(reverse) progress = 0;
                     success = !success;
                 }
             }
