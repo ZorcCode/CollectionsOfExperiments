@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:gravity="center"
+        android:paddingLeft="7dp"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/title_notification"
+            android:textSize="16dp"
+            style="@style/TextAppearance.Compat.Notification.Title"
+            android:text="Title of the notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="12dp"
+            android:id="@+id/description_notification"
+            style="@style/TextAppearance.Compat.Notification.Info"
+            android:text="Title description of the notitification in collapsed mode. click expand icon to expand it."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/icon_notification"
+        android:padding="10dp"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:src="@drawable/notif"/>
+</LinearLayout>

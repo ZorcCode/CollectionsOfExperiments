@@ -2,6 +2,7 @@ package com.example.easylife.geofennceUI;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -36,10 +37,13 @@ public class StartButton extends ConstraintLayout {
     {
         inflate(context, R.layout.start_button,this);
         CirclularProgressButton progressButton = findViewById(R.id.progressbutton);
+        final Vibrator vibe = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+
         progressButton.setCallback(new CirclularProgressButton.Callback() {
             @Override
             public void onComplete() {
                     progressButton.setReverse(!progressButton.isReverse());
+//                vibe.vibrate(800);
                 Log.e("43", "StartButton -> onComplete: "+progressButton.isReverse());
             }
 

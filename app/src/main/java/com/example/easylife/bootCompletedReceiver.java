@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class bootCompletedReceiver extends BroadcastReceiver {
 
-    SimpleDateFormat dateFormat=new SimpleDateFormat("dd mmm hh:mm", Locale.US);
+    SimpleDateFormat dateFormat=new SimpleDateFormat("dd MMM hh:mm", Locale.US);
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -46,7 +46,8 @@ public class bootCompletedReceiver extends BroadcastReceiver {
                 i.setAction(s.getValue());
                 PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
                 am.setRepeating(AlarmManager.RTC_WAKEUP, s.getKey(), AlarmManager.INTERVAL_DAY, pi);
-                Toast.makeText(context,"Alarm Setted "+dateFormat.format(s.getKey()),Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Alarm Setted For Easy Life"+dateFormat.format(s.getKey()),Toast.LENGTH_SHORT).show();
+                Log.e("50", "bootCompletedReceiver -> setAlarm: this is Easy life man.........!");
             }
         }
     }
@@ -76,6 +77,5 @@ public class bootCompletedReceiver extends BroadcastReceiver {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

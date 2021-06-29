@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+    <TextView
+        android:paddingStart="10dp"
+        android:gravity="left"
+        android:id="@+id/title_notification"
+        android:textSize="14dp"
+        style="@style/TextAppearance.Compat.Notification.Title"
+        android:text="Title of the notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:paddingTop="5dp"
+        android:id="@+id/icon_notification"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="145dp"
+        android:src="@drawable/notif" />
+    <TextView
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:gravity="left"
+        android:textSize="13dp"
+    android:id="@+id/description_notification"
+    style="@style/TextAppearance.Compat.Notification.Info"
+        android:text="Hello there, this is description of the notitification in expanded mode. you can give three lines of description here and it will show like this! dont go beyond threee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

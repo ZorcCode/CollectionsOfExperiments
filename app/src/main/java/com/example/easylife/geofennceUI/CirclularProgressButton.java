@@ -8,6 +8,7 @@ import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -33,7 +34,7 @@ public class CirclularProgressButton extends View implements View.OnTouchListene
     boolean success = false;
     private boolean reverse = false;
     int duration ;
-
+     Vibrator vibe;
 
     public CirclularProgressButton(Context context) {
         super(context);
@@ -61,6 +62,7 @@ public class CirclularProgressButton extends View implements View.OnTouchListene
     Paint paint;
     BlurMaskFilter blurMaskFilter;
     private void commonConstruct(Context context){
+    vibe = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         if(text==null)   text = "Clock In";
         paint = new Paint();
         blurMaskFilter = new BlurMaskFilter(40, BlurMaskFilter.Blur.NORMAL);
@@ -75,6 +77,7 @@ public class CirclularProgressButton extends View implements View.OnTouchListene
         animator.addUpdateListener(animation -> {
             float value = (float) animation.getAnimatedValue();
             progress = value;
+//            vibe.vibrate(1/1);
             setScaleX(1+value*scale/360);
             setScaleY(1+value*scale/360);
             invalidate();

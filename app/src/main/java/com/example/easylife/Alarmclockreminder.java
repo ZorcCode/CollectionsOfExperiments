@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Map;
 
@@ -55,6 +56,8 @@ public class Alarmclockreminder extends AppCompatActivity {
                 }
                 time = calendar.getTimeInMillis();
                 setAlarm(time);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
+                    Toast.makeText(Alarmclockreminder.this,"Alarm Set for "+simpleDateFormat.format(time),Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -73,7 +76,6 @@ public class Alarmclockreminder extends AppCompatActivity {
         PendingIntent pi = PendingIntent.getBroadcast(this, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
         //setting the repeating alarm that will be fired every day
         am.setRepeating(AlarmManager.RTC_WAKEUP, time, AlarmManager.INTERVAL_DAY, pi);
-
     }
 
 
