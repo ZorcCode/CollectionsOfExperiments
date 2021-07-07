@@ -1,5 +1,6 @@
 package com.example.easylife.kotlinfiles
 
+import android.util.Log
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -13,7 +14,7 @@ import java.util.concurrent.TimeUnit
 
 class HttpProcess(private var url: String) {
 
-    fun makeRequest(callback: Callback,params: String?,method: String){
+    private fun makeRequest(callback: Callback,params: String?){
          val parameters = params?.let { JSONObject(it) }
         Thread {
             val okHttpClient = OkHttpClient.Builder()
@@ -23,7 +24,7 @@ class HttpProcess(private var url: String) {
                 .build()
             val requestBody = parameters.toString().toRequestBody()
             val request = Request.Builder()
-                .method(method, requestBody)
+                .method("POST", requestBody)
                 .header("Content-Type","application/json")
                 .url(url)
                 .build()
@@ -54,6 +55,19 @@ class HttpProcess(private var url: String) {
             })
         }.start()
     }
+
+    fun post(params: String?,callback: Callback) {
+        makeRequest(callback,params)
+    }
+
+    interface Callback {
+        fun onError(exception: IOException?)
+
+        @Throws(JSONException::class)
+        fun onResponse(response: String?)
+    }
+}
+
 
 
 //    fun post(
@@ -127,15 +141,3 @@ class HttpProcess(private var url: String) {
 //        }
 //        return type
 //    }
-
-    fun post(params: String?,callback: Callback) {
-        makeRequest(callback,params,"POST")
-    }
-
-    interface Callback {
-        fun onError(exception: IOException?)
-
-        @Throws(JSONException::class)
-        fun onResponse(response: String?)
-    }
-}

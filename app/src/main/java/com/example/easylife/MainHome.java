@@ -37,14 +37,15 @@ import android.widget.Toast;
 
 import com.bumptech.glide.util.Util;
 import com.example.easylife.geofennceUI.GeoFencing;
+import com.example.easylife.kotlinfiles.HttpProcess;
 import com.example.easylife.kotlinfiles.RecyclerViewExample;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.installations.Utils;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.harsh.hkutils.HttpProcess;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -88,12 +89,13 @@ public class MainHome extends AppCompatActivity {
                 });
 
         this.registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-        findViewById(R.id.api_call).setOnClickListener(view -> {apiCall();});
+        findViewById(R.id.api_call).setOnClickListener(view -> apiCall());
         findViewById(R.id.alarm).setOnClickListener(view -> startActivity(new Intent(this, Alarmclockreminder.class)));
         findViewById(R.id.collapsing).setOnClickListener(view -> startActivity(new Intent(this, MainActivity.class)));
         findViewById(R.id.notification).setOnClickListener(view -> MyAlarm.addNotification(this));
         findViewById(R.id.filecreation).setOnClickListener(view -> filecreation());
         findViewById(R.id.start_Button_ui).setOnClickListener(view ->  startActivity(new Intent(this, GeoFencing.class)));
+        findViewById(R.id.netOnOff).setOnClickListener(view ->  startActivity(new Intent(this, InternetCheckActivity.class)));
         findViewById(R.id.anim).setOnClickListener(view -> { startActivity(new Intent(this, Animations.class));
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.os.action.POWER_SAVE_MODE_CHANGED");
@@ -201,28 +203,36 @@ public class MainHome extends AppCompatActivity {
         } catch (Exception e) {
                 e.printStackTrace();
         }
-
-
-        RecyclerView recyclerView = findViewById(R.id.recycler);
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull @NotNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(@NonNull @NotNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
-
+//
+//
+//        RecyclerView recyclerView = findViewById(R.id.recycler);
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(@NonNull @NotNull RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//            }
+//
+//            @Override
+//            public void onScrolled(@NonNull @NotNull RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//            }
+//        });
+//
     }
 
     private void apiCall() {
+        com.example.easylife.kotlinfiles.HttpProcess process = new com.example.easylife.kotlinfiles.HttpProcess("http://192.168.138.76:3000/xyz");
+        process.post(String.format("{clock_out:%s}",823734982), new HttpProcess.Callback() {
+            @Override
+            public void onError(@Nullable IOException exception) {
+                Log.e("228", "MainHome -> onError: "+exception.getMessage());
+            }
 
-
-        Intent in = new Intent(this, RecyclerViewExample.class);
-        startActivity(in);
+            @Override
+            public void onResponse(@Nullable String response) throws JSONException {
+                Log.e("233", "MainHome -> onResponse: "+response);
+            }
+        });
     }
 
     public void filecreation()
@@ -370,7 +380,7 @@ public class MainHome extends AppCompatActivity {
             int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
             int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
             float batteryPct = level * 100 / (float)scale;
-            ((TextView) findViewById(R.id.battery)).setText(String.valueOf(batteryPct) + "%");
+            ((TextView) findViewById(R.id.battery)).setText(batteryPct + "%");
         }
     };
 

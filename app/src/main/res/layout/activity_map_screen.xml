@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    tools:context=".bottomnavigationanim.MapScreenActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_background"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/profile_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/profile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                android:padding="5dp"
+                android:src="@drawable/person"
+                android:contentDescription="TODO" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/questrial"
+                    android:paddingBottom="3dp"
+                    android:text="Good Morning"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arbutus_slab"
+                    android:paddingTop="2dp"
+                    android:text="Pankaj (02)"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="5dp"
+                android:padding="3dp"
+                android:rotation="180"
+                android:src="@drawable/menu_icon" />
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/km_card"
+            style="@style/CustomCardForKm"
+            app:cardBackgroundColor="@android:color/holo_blue_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_card">
+
+            <LinearLayout
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:rotation="0"
+                    android:src="@drawable/bike_person" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arbutus_slab"
+                    android:paddingTop="5dp"
+                    android:text="17.8 km"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arbutus_slab"
+                    android:padding="5dp"
+                    android:text="2h : 28m"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:elevation="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            app:cardCornerRadius="1000dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <pl.droidsonroids.gif.GifImageView
+            android:padding="15dp"
+            android:src="@drawable/office"
+            android:layout_width="70dp"
+            android:layout_height="70dp"  />
+        </androidx.cardview.widget.CardView>
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:translationX="4.5dp"
+        android:translationY="-9dp"
+        android:rotation="-7"
+        app:layout_constraintRight_toLeftOf="@+id/office_layout"
+        app:layout_constraintTop_toBottomOf="@+id/top_layout"
+        android:background="@drawable/circle"/>
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:translationX="-3dp"
+        android:translationY="-8dp"
+        android:rotation="10"
+        android:scaleX="-1"
+        app:layout_constraintLeft_toRightOf="@+id/office_layout"
+        app:layout_constraintTop_toBottomOf="@+id/top_layout"
+        android:background="@drawable/circle"/>
+    <LinearLayout
+        android:layout_marginStart="1dp"
+        android:id="@+id/office_layout"
+        android:translationY="-20dp"
+        app:layout_constraintTop_toBottomOf="@+id/top_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/break_button"
+        android:layout_marginRight="50dp"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:elevation="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:padding="10dp"-->
+<!--            app:cardCornerRadius="1000dp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content">-->
+            <pl.droidsonroids.gif.GifImageView
+                android:padding="15dp"
+                android:src="@drawable/break_lunch"
+                android:layout_width="80dp"
+                android:layout_height="80dp"  />
+<!--        </androidx.cardview.widget.CardView>-->
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

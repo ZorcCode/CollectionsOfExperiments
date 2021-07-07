@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -21,9 +22,13 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.EasyLife">
-        <activity android:name=".kotlinfiles.RecyclerViewExample"></activity>
+        android:theme="@style/Theme.EasyLife"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".bottomnavigationanim.MapScreenActivity"></activity>
+        <activity android:name=".bottomnavigationanim.BottomNavTwo" />
+        <activity android:name=".bottomnavigationanim.BottomNavigation" />
+        <activity android:name=".InternetCheckActivity" />
+        <activity android:name=".kotlinfiles.RecyclerViewExample" />
         <activity android:name=".Animations" />
 
         <receiver
@@ -85,13 +90,11 @@
                 <action android:name="android.intent.action.TIME_SET" />
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
             </intent-filter>
-        </receiver> <!-- New signature permission to ensure only systemui can bind to these services -->
-        <receiver android:name=".NetworkChangeReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
-            </intent-filter>
         </receiver>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

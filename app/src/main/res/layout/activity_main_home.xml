@@ -88,6 +88,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <Button
+        android:id="@+id/netOnOff"
+        android:text="Internet ON OFF BROADCAST"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
         android:id="@+id/anim"
         android:text="Various Animations"
         android:layout_gravity="center"

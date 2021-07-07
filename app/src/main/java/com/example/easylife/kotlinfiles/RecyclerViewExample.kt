@@ -18,7 +18,6 @@ class RecyclerViewExample : AppCompatActivity() {
 
     private val movieList = ArrayList<MovieModel>()
     var year = 1900
-    private lateinit var scrollListener: RecyclerView.OnScrollListener
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

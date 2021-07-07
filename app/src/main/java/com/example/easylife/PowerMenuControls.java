@@ -9,9 +9,6 @@ public class PowerMenuControls extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_power_menu_controls)
-
-
-        ;
+        setContentView(R.layout.activity_power_menu_controls);
     }
 }
