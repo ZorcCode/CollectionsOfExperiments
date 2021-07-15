@@ -12,6 +12,9 @@ import android.net.NetworkRequest;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.ValueCallback;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import static android.util.Log.e;
@@ -25,6 +28,24 @@ public class InternetCheckActivity extends AppCompatActivity {
         setContentView(R.layout.activity_internet_check);
 
         textView = findViewById(R.id.textView2);
+        WebView webView = findViewById(R.id.webview);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.addJavascriptInterface(new WebAppInterface(this),"Android");
+        webView.loadData("<html>\n" +
+                "<body>\n" +
+                "<script>\n" +
+                "\twindow.addEventListener('online',()=>{\n" +
+                "\t\tAndroid.online();\n" +
+                "\t});\n" +
+                "\twindow.addEventListener('offline',()=>{\n" +
+                "\t\tAndroid.offline();\n" +
+                "\t});\n" +
+                "</script>\n" +
+                "</body>\n" +
+                "</html>","text/html","UTF-8");
+
+
 //        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
 //        registerReceiver(new NetworkChangeReceiver(), intentFilter);
 //

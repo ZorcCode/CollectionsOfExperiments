@@ -28,8 +28,16 @@
     </LinearLayout>
 
     <TextView
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:textSize="18dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/root_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
         android:id="@+id/battery"
-        android:drawableStart="@drawable/ic_baseline_battery_charging_full_24"
         android:text="---"
         android:textColor="@color/teal_200"
         android:textSize="25dp"
@@ -37,76 +45,99 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:gravity="center"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:drawableStartCompat="@drawable/ic_baseline_battery_charging_full_24" />
+    <ScrollView
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <Button
-        android:id="@+id/alarm"
-        android:text="Alarm Clock"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/collapsing"
-        android:text="Collpasing sp screen"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/notification"
-        android:text="Fire Notification"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/filecreation"
-        android:text="File Creation"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/navigation"
-        android:text="Navigation Drawer"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/start_Button_ui"
-        android:text="Start Button UI"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/gpsOnOff"
-        android:text="GPS ON OFF BROADCAST"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/netOnOff"
-        android:text="Internet ON OFF BROADCAST"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/anim"
-        android:text="Various Animations"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/api_call"
-        android:text="Node Js Api Call"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <LinearLayout
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:padding="10dp"
+                android:elevation="10dp"
+                android:requiresFadingEdge="horizontal|vertical"
+                android:shadowRadius="10"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@color/tracking_card_color"
+                android:id="@+id/home"
+                android:text="Home Screen"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:drawableStartCompat="@drawable/office_time"
+                app:drawableTint="@color/white" />
+            <Button
+                android:id="@+id/alarm"
+                android:text="Alarm Clock"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/collapsing"
+                android:text="Collpasing sp screen"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/notification"
+                android:text="Fire Notification"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/filecreation"
+                android:text="File Creation"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/navigation"
+                android:text="Navigation Drawer"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/start_Button_ui"
+                android:text="Start Button UI"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/gpsOnOff"
+                android:text="GPS ON OFF BROADCAST"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/netOnOff"
+                android:text="Internet ON OFF BROADCAST"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/anim"
+                android:text="Various Animations"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/api_call"
+                android:text="Node Js Api Call"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 
     <io.ghyeok.stickyswitch.widget.StickySwitch

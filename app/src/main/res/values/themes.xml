@@ -21,7 +21,7 @@
     <style name="Theme.EasyLife.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.EasyLife.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="CustomCardForKm" parent="@style/Widget.MaterialComponents.CardView">
+    <style name="CustomCardForTracking" parent="@style/Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
     </style>
     <style name="ShapeAppearanceOverlay_card_custom_corners" parent="">
@@ -31,5 +31,17 @@
         <item name="cornerSizeBottomRight">10dp</item>
         <item name="cornerSizeBottomLeft">100dp</item>
         <item name="android:elevation">10dp</item>
+    </style>
+
+    <style name="CustomCardForData" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_data_card_custom_corners</item>
+    </style>
+    <style name="ShapeAppearanceOverlay_data_card_custom_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+        <item name="android:elevation">1dp</item>
     </style>
 </resources>

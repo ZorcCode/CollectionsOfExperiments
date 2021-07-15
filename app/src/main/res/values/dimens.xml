@@ -7,5 +7,9 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="top_layout_border">105dp</dimen>
     <dimen name="top_layout_border_less">-100dp</dimen>
+    <dimen name="padding_data_card_text">5dp</dimen>
+    <dimen name="data_icons_size">30dp</dimen>
+    <dimen name="data_card_padding_left_right">8dp</dimen>
+    <dimen name="data_card_padding_top_bottom">5dp</dimen>
 
 </resources>

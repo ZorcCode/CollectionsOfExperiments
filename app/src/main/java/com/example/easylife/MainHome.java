@@ -36,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.util.Util;
+import com.example.easylife.bottomnavigationanim.MapScreenActivity;
 import com.example.easylife.geofennceUI.GeoFencing;
 import com.example.easylife.kotlinfiles.HttpProcess;
 import com.example.easylife.kotlinfiles.RecyclerViewExample;
@@ -43,11 +44,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.installations.Utils;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.scottyab.rootbeer.RootBeer;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -61,6 +64,8 @@ import io.ghyeok.stickyswitch.widget.StickySwitch;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+
+import static android.util.Log.e;
 
 public class MainHome extends AppCompatActivity {
 
@@ -76,21 +81,31 @@ public class MainHome extends AppCompatActivity {
 //        RequestBody body = RequestBody.create("{}",JSON);
 //        Request request=new Request.Builder().url("url").post(body).build();
 
+//        ((TextView)findViewById(R.id.root_check)).setText(RootUtil.isDeviceRooted()?"Device Rooted":"Not Rooted");
+
+        RootBeer rootBeer = new RootBeer(this);
+        e("84", "MainHome -> onCreate  ->  : "+rootBeer.isRooted());
+        if (rootBeer.isRooted()) {
+            ((TextView)findViewById(R.id.root_check)).setText("Device Rooted");
+        } else {
+            ((TextView)findViewById(R.id.root_check)).setText("Not Rooted");
+        }
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
-                        Log.e("62", "MainHome -> onComplete: "+task);
+                        e("62", "MainHome -> onComplete: "+task);
                         return;
                     }
 
                     String token = task.getResult();
-                    Log.e("68", "MainHome -> onComplete: "+token);
+                    e("68", "MainHome -> onComplete: "+token);
 
                 });
 
         this.registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         findViewById(R.id.api_call).setOnClickListener(view -> apiCall());
         findViewById(R.id.alarm).setOnClickListener(view -> startActivity(new Intent(this, Alarmclockreminder.class)));
+        findViewById(R.id.home).setOnClickListener(view -> startActivity(new Intent(this, MapScreenActivity.class)));
         findViewById(R.id.collapsing).setOnClickListener(view -> startActivity(new Intent(this, MainActivity.class)));
         findViewById(R.id.notification).setOnClickListener(view -> MyAlarm.addNotification(this));
         findViewById(R.id.filecreation).setOnClickListener(view -> filecreation());
@@ -110,12 +125,13 @@ public class MainHome extends AppCompatActivity {
             Intent intent = new Intent(MainHome.this, NavigationDrawer.class);
             startActivity(intent);
         });
+
         stickySwitch = findViewById(R.id.sticky_switch);
         stickySwitch.setLeftIcon(R.drawable.ic_coffie);
         stickySwitch.setRightIcon(R.drawable.ic_baseline_work_24);
 
         stickySwitch.setOnSelectedChangeListener((direction, text) -> {
-            Log.e("70", "MainHome -> onSelectedChange: text "+text+"\n direction - "+direction);
+            e("70", "MainHome -> onSelectedChange: text "+text+"\n direction - "+direction);
             if(direction.equals(StickySwitch.Direction.RIGHT)) {
                 Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -132,14 +148,14 @@ public class MainHome extends AppCompatActivity {
 
         BatteryManager powerManager = (BatteryManager) getSystemService(Context.BATTERY_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            Log.e("113", "MainHome -> onCreate: charge counter "+powerManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CHARGE_COUNTER));
-            Log.e("113", "MainHome -> onCreate: health over voltage  "+powerManager.getLongProperty(BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE));
-            Log.e("113", "MainHome -> onCreate: plggedin "+powerManager.getLongProperty(BatteryManager.BATTERY_PLUGGED_AC));
-            Log.e("113", "MainHome -> onCreate: health cold  "+powerManager.getLongProperty(BatteryManager.BATTERY_HEALTH_COLD));
-            Log.e("113", "MainHome -> onCreate: health dead  "+powerManager.getLongProperty(BatteryManager.BATTERY_HEALTH_DEAD));
-            Log.e("113", "MainHome -> onCreate: health Good  "+powerManager.getLongProperty(BatteryManager.BATTERY_HEALTH_GOOD));
-            Log.e("113", "MainHome -> onCreate: health Good  "+powerManager.getLongProperty(BatteryManager.BATTERY_HEALTH_UNKNOWN));
-            Log.e("113", "MainHome -> onCreate: level  "+powerManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY));
+            e("113", "MainHome -> onCreate: charge counter "+powerManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CHARGE_COUNTER));
+            e("113", "MainHome -> onCreate: health over voltage  "+powerManager.getLongProperty(BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE));
+            e("113", "MainHome -> onCreate: plggedin "+powerManager.getLongProperty(BatteryManager.BATTERY_PLUGGED_AC));
+            e("113", "MainHome -> onCreate: health cold  "+powerManager.getLongProperty(BatteryManager.BATTERY_HEALTH_COLD));
+            e("113", "MainHome -> onCreate: health dead  "+powerManager.getLongProperty(BatteryManager.BATTERY_HEALTH_DEAD));
+            e("113", "MainHome -> onCreate: health Good  "+powerManager.getLongProperty(BatteryManager.BATTERY_HEALTH_GOOD));
+            e("113", "MainHome -> onCreate: health Good  "+powerManager.getLongProperty(BatteryManager.BATTERY_HEALTH_UNKNOWN));
+            e("113", "MainHome -> onCreate: level  "+powerManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY));
         }
 
 //        LocationManager locationManager;
@@ -176,7 +192,7 @@ public class MainHome extends AppCompatActivity {
 //            Log.e("", "onCreate: " + e.getMessage());
 //        }
         sqliteHelper sqlitehelper = new sqliteHelper(this);
-        Log.e("MainHome", "onCreate: "+sqlitehelper.getdata() );
+        e("MainHome", "onCreate: "+sqlitehelper.getdata() );
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_BOOT_COMPLETED)!= PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECEIVE_BOOT_COMPLETED},1);
@@ -198,7 +214,7 @@ public class MainHome extends AppCompatActivity {
             BufferedReader reader=new BufferedReader(new FileReader(file));
             String s;
             while ((s=reader.readLine())!=null){
-                Log.e("TAG", "onCreate: line "+s );
+                e("TAG", "onCreate: line "+s );
             }
         } catch (Exception e) {
                 e.printStackTrace();
@@ -225,12 +241,12 @@ public class MainHome extends AppCompatActivity {
         process.post(String.format("{clock_out:%s}",823734982), new HttpProcess.Callback() {
             @Override
             public void onError(@Nullable IOException exception) {
-                Log.e("228", "MainHome -> onError: "+exception.getMessage());
+                e("228", "MainHome -> onError: "+exception.getMessage());
             }
 
             @Override
             public void onResponse(@Nullable String response) throws JSONException {
-                Log.e("233", "MainHome -> onResponse: "+response);
+                e("233", "MainHome -> onResponse: "+response);
             }
         });
     }
@@ -281,10 +297,10 @@ public class MainHome extends AppCompatActivity {
                 boolean isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
                 boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
                 if (isGpsEnabled || isNetworkEnabled) {
-                    Log.e("241", "MainHome -> onReceive: gps enabled");
+                    e("241", "MainHome -> onReceive: gps enabled");
                     //location is enabled
                 } else {
-                    Log.e("244", "MainHome -> onReceive: gps disabled");
+                    e("244", "MainHome -> onReceive: gps disabled");
                     //location is disabled
                 }
             }
@@ -389,9 +405,9 @@ public class MainHome extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
             if (pm.isPowerSaveMode()) {
-                Log.e("346", "MainHome -> onReceive: Power Mode on");
+                e("346", "MainHome -> onReceive: Power Mode on");
             } else {
-                Log.e("346", "MainHome -> onReceive: Power Mode off");
+                e("346", "MainHome -> onReceive: Power Mode off");
             }
         }
     };

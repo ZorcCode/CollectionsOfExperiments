@@ -14,5 +14,31 @@
 <!--    <color name="shadowColor">#000000</color>-->
     <color name="shadowColor">#a2a0af</color>
 
+    <color name="star_color_1">#ffffff</color>
+    <color name="star_color_2">#25Adff</color>
+    <color name="star_color_3">#FFC100</color>
+    <color name="star_color_4">#FF3800</color>
+
+    <color name="tracking_card_color">#096d79</color>
+    <color name="text_card_color">#a2d5c6</color>
+    <color name="break_color">#FF6200</color>
+    <color name="break_over_color">#F80DA6BA</color>
+    <color name="data_card_text_color">#00483E</color>
+    <color name="data_card_back_color">#E6EFEE</color>
+    <color name="tracking">#00A08E</color>
+    <color name="on_break">#FF6E13</color>
+    <color name="light_text_color">#F8FFFE</color>
+
+
+
+
+    <color name="my_color">#077b8a</color>
+
+
+    <color name="primary_color">#064850</color>
+    <color name="primary_color_second">#096d79</color>
+
+    //077b8a
+
 
 </resources>
