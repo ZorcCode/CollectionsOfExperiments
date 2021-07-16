@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".bottomnavigationanim.MapScreenActivity">
@@ -13,11 +14,20 @@
         android:layout_height="match_parent"
         android:background="@drawable/map"
         android:orientation="vertical" />
-    <LinearLayout
-        app:layout_constraintTop_toBottomOf="@+id/map_holder"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <View
+        android:id="@+id/map_holder"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="1dp"
+        android:layout_marginBottom="210dp"
+        app:layout_constraintBottom_toBottomOf="@+id/top_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map_holder">
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -28,170 +38,201 @@
     <LinearLayout
         android:id="@+id/office_screen_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#8ADFFF"
+        android:layout_height="0dp"
+        android:background="@color/office_background_color"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:visibility="invisible">
-        <!--        <com.sofakingforever.stars.AnimatedStarsView-->
-        <!--            android:id="@+id/stars"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            app:starsView_bigStarThreshold="10dp"-->
-        <!--            app:starsView_meteoritesColors="@array/meteorites_colors"-->
-        <!--            app:starsView_meteoritesEnabled="true"-->
-        <!--            app:starsView_meteoritesInterval="2000"-->
-        <!--            app:starsView_maxStarSize="16dp"-->
-        <!--            app:starsView_minStarSize="1dp"-->
-        <!--            app:starsView_starColors="@array/star_colors"-->
-        <!--            app:starsView_starCount="50" />-->
-        <pl.droidsonroids.gif.GifImageView
+        android:paddingBottom="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map_holder">
+
+        <View
             android:layout_width="wrap_content"
-            android:layout_height="250dp"
-            android:padding="15dp"
-            android:src="@drawable/tenor" />
+            android:layout_height="0dp"
+            android:layout_weight="2" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/office_mode" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/arbutus_slab"
+            android:gravity="center"
             android:text="Working Mode"
-            android:textColor="@color/black"
-            android:textSize="25dp"
+            android:textColor="@color/data_card_text_color"
+            android:textSize="21sp"
             android:textStyle="bold" />
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/break_reveal_holder"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginEnd="80dp"
+        android:orientation="horizontal"
+        android:translationY="-50dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_layout" />
 
     <LinearLayout
         android:id="@+id/break_screen_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#8cced6"
+        android:layout_height="0dp"
+        android:background="@color/break_color"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:visibility="invisible">
-        <!--        <com.sofakingforever.stars.AnimatedStarsView-->
-        <!--            android:id="@+id/stars"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            app:starsView_bigStarThreshold="10dp"-->
-        <!--            app:starsView_meteoritesColors="@array/meteorites_colors"-->
-        <!--            app:starsView_meteoritesEnabled="true"-->
-        <!--            app:starsView_meteoritesInterval="2000"-->
-        <!--            app:starsView_maxStarSize="16dp"-->
-        <!--            app:starsView_minStarSize="1dp"-->
-        <!--            app:starsView_starColors="@array/star_colors"-->
-        <!--            app:starsView_starCount="50" />-->
-        <pl.droidsonroids.gif.GifImageView
+        android:paddingBottom="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/map_holder">
+
+        <View
             android:layout_width="wrap_content"
-            android:layout_height="250dp"
-            android:padding="15dp"
-            android:src="@drawable/breakofficetime" />
+            android:layout_height="0dp"
+            android:layout_weight="2" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/break_time" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="100dp"
-            android:text="Break Mode"
-            android:textColor="@color/white"
-            android:textSize="25dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/arbutus_slab"
+            android:gravity="center"
+            android:text="Break Time"
+            android:textColor="@color/data_card_text_color"
+            android:textSize="21sp"
             android:textStyle="bold" />
 
-
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:elevation="10dp"
-        android:rotation="1"
-        android:translationX="8dp"
-        android:translationY="-4dp"
-        app:layout_constraintRight_toLeftOf="@+id/break_layout"
-        app:layout_constraintTop_toBottomOf="@+id/top_layout"
-        app:srcCompat="@drawable/circle" />
-
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:srcCompat="@drawable/circle"
-        android:elevation="10dp"
-        android:rotation="0"
-        android:scaleX="-1"
-        android:translationX="-7.8dp"
-        android:translationY="-3dp"
-        app:layout_constraintLeft_toRightOf="@+id/break_layout"
-        app:layout_constraintTop_toBottomOf="@+id/top_layout" />
-    <LinearLayout
-        android:id="@+id/break_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/break_button"
-        android:elevation="10dp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_layout">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/break_tracking_card"
+        <View
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="1000dp"
-            app:cardElevation="1dp">
-            <!--            <com.airbnb.lottie.LottieAnimationView-->
-            <!--                android:id="@+id/break"-->
-            <!--                android:layout_width="80dp"-->
-            <!--                android:layout_height="80dp"-->
-            <!--                app:lottie_rawRes="@drawable/pause"-->
-            <!--                app:lottie_autoPlay="true"-->
-            <!--                app:lottie_loop="true"/>-->
-            <ImageView
-                android:id="@+id/break_tracking_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:padding="15dp"
-                android:src="@drawable/pause" />
-        </androidx.cardview.widget.CardView>
+            android:layout_height="0dp"
+            android:layout_weight="1" />
     </LinearLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:focusable="true"
-        android:clickable="true"
-        android:focusableInTouchMode="true"
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/top_background"
+        android:clipToPadding="false"
         android:elevation="10dp"
-        android:paddingBottom="10dp"
+        android:paddingBottom="100dp"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/top_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:elevation="10dp"
+            android:rotation="1"
+            android:translationX="8dp"
+            android:translationY="-4dp"
+            app:layout_constraintRight_toLeftOf="@+id/break_layout"
+            app:layout_constraintTop_toBottomOf="@+id/top_layout"
+            app:srcCompat="@drawable/circle" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:elevation="10dp"
+            android:rotation="0"
+            android:scaleX="-1"
+            android:translationX="-7.8dp"
+            android:translationY="-3dp"
+            app:layout_constraintLeft_toRightOf="@+id/break_layout"
+            app:layout_constraintTop_toBottomOf="@+id/top_layout"
+            app:srcCompat="@drawable/circle" />
+
+        <LinearLayout
+            android:id="@+id/break_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/break_button"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintLeft_toLeftOf="@+id/data_layout"
+            app:layout_constraintRight_toRightOf="@+id/data_layout"
+            app:layout_constraintTop_toBottomOf="parent">
+
+            <LinearLayout
+                android:id="@+id/break_tracking_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:background="@drawable/white_circle"
+                android:elevation="3dp">
+                <!--            <com.airbnb.lottie.LottieAnimationView-->
+                <!--                android:id="@+id/break"-->
+                <!--                android:layout_width="80dp"-->
+                <!--                android:layout_height="80dp"-->
+                <!--                app:lottie_rawRes="@drawable/pause"-->
+                <!--                app:lottie_autoPlay="true"-->
+                <!--                app:lottie_loop="true"/>-->
+                <ImageView
+                    android:id="@+id/break_tracking_image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:padding="15dp"
+                    android:src="@drawable/pause" />
+            </LinearLayout>
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/profile_card"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/data_layout"
             app:layout_constraintTop_toTopOf="parent">
 
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/profile"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="3dp"
                 android:padding="3dp"
                 android:src="@drawable/avatar" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
@@ -209,59 +250,82 @@
 
                 <TextView
                     android:id="@+id/profile_name"
-                    android:singleLine="true"
-                    android:freezesText="true"
-                    android:scrollHorizontally="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:ellipsize="marquee"
                     android:focusableInTouchMode="true"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
+                    android:freezesText="true"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:paddingTop="2dp"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
                     android:text="02 Pankaj Malviya"
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:paddingTop="5dp"
-            android:paddingRight="5dp"
-            android:paddingLeft="5dp"
-            android:id="@+id/data_layout"
-            android:layout_width="wrap_content"
+        <!--        <com.google.android.material.card.MaterialCardView-->
+        <!--            android:layout_margin="5dp"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:layout_constraintBottom_toTopOf="@id/data_layout"-->
+        <!--            app:layout_constraintRight_toRightOf="parent"-->
+        <!--            app:layout_constraintLeft_toRightOf="@+id/profile_card"-->
+        <!--            android:id="@+id/current_status_card"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:elevation="5dp"-->
+        <!--            android:paddingLeft="10dp"-->
+        <!--            android:paddingRight="10dp"-->
+        <!--            app:cardBackgroundColor="@color/on_break"-->
+        <!--            app:cardCornerRadius="5dp">-->
+
+        <TextView
+            android:id="@+id/current_status"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/label_backgound"
+            android:ellipsize="marquee"
+            android:focusableInTouchMode="true"
+            android:fontFamily="@font/poppins_medium"
+            android:freezesText="true"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:padding="5dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="ON BREAK"
+            android:textColor="@color/data_card_text_color"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/dot"
+            app:layout_constraintBottom_toTopOf="@id/data_layout"
+            app:layout_constraintLeft_toRightOf="@+id/profile_card"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--        </com.google.android.material.card.MaterialCardView>-->
+
+        <LinearLayout
+            android:id="@+id/data_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:gravity="center_vertical"
             android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/tracking_card"
             app:layout_constraintRight_toRightOf="parent"
-            >
-            <com.google.android.material.card.MaterialCardView
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="5dp"
-                app:cardBackgroundColor="@color/on_break"
-                app:cardCornerRadius="5dp"
-                android:layout_marginBottom="10dp"
-                >
-                <TextView
-                    android:padding="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="2dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center"
-                    android:text="ON BREAK"
-                    android:textColor="@color/light_text_color"
-                    android:textSize="12sp"
-                    android:textStyle="bold"/>
-            </com.google.android.material.card.MaterialCardView>
+            app:layout_constraintTop_toBottomOf="@+id/profile_card">
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -282,10 +346,10 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:paddingTop="@dimen/data_card_padding_top_bottom"
-                        android:paddingBottom="@dimen/data_card_padding_top_bottom"
                         android:paddingLeft="@dimen/data_card_padding_left_right"
-                        android:paddingRight="@dimen/data_card_padding_left_right">
+                        android:paddingTop="@dimen/data_card_padding_top_bottom"
+                        android:paddingRight="@dimen/data_card_padding_left_right"
+                        android:paddingBottom="@dimen/data_card_padding_top_bottom">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -297,15 +361,14 @@
                             android:textColor="@color/data_card_text_color"
                             android:textSize="12sp"
                             android:textStyle="bold"
+                            app:drawableTint="@color/black_modified"
                             app:drawableTopCompat="@drawable/clock_in_icon" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/arbutus_slab"
                             android:gravity="center"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:paddingBottom="5dp"
                             android:text="12 : 59 am"
                             android:textColor="@color/data_card_text_color"
                             android:textSize="11sp"
@@ -362,8 +425,8 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_marginLeft="3dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginRight="3dp"
                     android:layout_weight="1"
                     app:cardBackgroundColor="@color/data_card_back_color"
@@ -372,11 +435,13 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:orientation="vertical"
-                        android:paddingTop="@dimen/data_card_padding_top_bottom"
-                        android:paddingBottom="@dimen/data_card_padding_top_bottom"
                         android:paddingLeft="@dimen/data_card_padding_left_right"
-                        android:paddingRight="@dimen/data_card_padding_left_right">
+                        android:paddingTop="@dimen/data_card_padding_top_bottom"
+                        android:paddingRight="@dimen/data_card_padding_left_right"
+                        android:paddingBottom="@dimen/data_card_padding_top_bottom">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -387,8 +452,9 @@
                             android:lines="1"
                             android:text="Break"
                             android:textColor="@color/data_card_text_color"
-                            android:textSize="12dp"
+                            android:textSize="12sp"
                             android:textStyle="bold"
+                            app:drawableTint="@color/black_modified"
                             app:drawableTopCompat="@drawable/break_time" />
 
                         <TextView
@@ -396,9 +462,6 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/arbutus_slab"
                             android:gravity="center"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:paddingBottom="5dp"
                             android:text="12h : 59m"
                             android:textColor="@color/data_card_text_color"
                             android:textSize="11sp"
@@ -446,8 +509,8 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_marginLeft="3dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginRight="3dp"
                     android:layout_weight="1"
                     app:cardBackgroundColor="@color/data_card_back_color"
@@ -460,10 +523,10 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:paddingTop="@dimen/data_card_padding_top_bottom"
-                        android:paddingBottom="@dimen/data_card_padding_top_bottom"
                         android:paddingLeft="@dimen/data_card_padding_left_right"
-                        android:paddingRight="@dimen/data_card_padding_left_right">
+                        android:paddingTop="@dimen/data_card_padding_top_bottom"
+                        android:paddingRight="@dimen/data_card_padding_left_right"
+                        android:paddingBottom="@dimen/data_card_padding_top_bottom">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -474,8 +537,9 @@
                             android:lines="1"
                             android:text="Office"
                             android:textColor="@color/data_card_text_color"
-                            android:textSize="12dp"
+                            android:textSize="12sp"
                             android:textStyle="bold"
+                            app:drawableTint="@color/black_modified"
                             app:drawableTopCompat="@drawable/office_time" />
 
                         <TextView
@@ -483,9 +547,6 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/arbutus_slab"
                             android:gravity="center"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:paddingBottom="5dp"
                             android:text="12h : 59m"
                             android:textColor="@color/data_card_text_color"
                             android:textSize="11sp"
@@ -500,81 +561,116 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/tracking_card"
             style="@style/CustomCardForTracking"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             app:cardBackgroundColor="@color/tracking_card_color"
+            app:layout_constraintBottom_toBottomOf="@id/data_layout"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_card">
+            app:layout_constraintRight_toLeftOf="@id/data_layout"
+            app:layout_constraintTop_toTopOf="@id/data_layout">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingTop="3dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="3dp">
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
                     android:rotation="0"
                     android:src="@drawable/bike_person" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/arbutus_slab"
+                    android:gravity="center"
                     android:paddingTop="5dp"
-                    android:text="17.8 km"
+                    android:text="88.88 km"
                     android:textColor="@android:color/white"
-                    android:textSize="22sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/arbutus_slab"
-                    android:padding="5dp"
                     android:text="2h : 28m"
                     android:textColor="@android:color/white"
-                    android:textSize="13sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/top_layout"
-        android:layout_marginBottom="110dp"
-        android:id="@+id/map_holder"
-        />
-
-
-
-    <androidx.cardview.widget.CardView
+    <LinearLayout
+        android:id="@+id/home_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/white_circle"
         android:elevation="10dp"
-        android:padding="10dp"
-        app:cardCornerRadius="1000dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sticky_switch">
+
+        <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:paddingStart="5dp"
+            android:paddingTop="3dp"
+            android:paddingEnd="3dp"
+            android:paddingBottom="5dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/home" />
+
+        <!--        <pl.droidsonroids.gif.GifImageView-->
+        <!--            android:layout_width="50dp"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:padding="15dp"-->
+        <!--            android:src="@drawable/home" />-->
+    </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/swipe_button"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintLeft_toRightOf="@id/home_button"
+        app:layout_constraintRight_toLeftOf="@id/sticky_switch"
+        app:layout_constraintTop_toTopOf="@id/sticky_switch"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/swipe_up_with_text" />
+
+    <LinearLayout
+        android:onClick="myLocation"
+        android:id="@+id/my_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/white_circle"
+        android:clipChildren="false"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toTopOf="@id/home_button"
         app:layout_constraintLeft_toLeftOf="parent">
 
-        <pl.droidsonroids.gif.GifImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:padding="15dp"
-            android:src="@drawable/home" />
-    </androidx.cardview.widget.CardView>
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="5dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/location" />
+    </LinearLayout>
 
     <io.ghyeok.stickyswitch.widget.StickySwitch
         android:id="@+id/sticky_switch"
@@ -594,8 +690,7 @@
         app:ss_selectedTextSize="14dp"
         app:ss_sliderBackgroundColor="@color/tracking_card_color"
         app:ss_switchColor="@color/material_on_primary_disabled"
-        app:ss_textColor="@color/data_card_back_color"
+        app:ss_textColor="@color/data_card_text_color"
         app:ss_textSize="12dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

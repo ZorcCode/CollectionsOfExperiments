@@ -81,15 +81,15 @@ public class MainHome extends AppCompatActivity {
 //        RequestBody body = RequestBody.create("{}",JSON);
 //        Request request=new Request.Builder().url("url").post(body).build();
 
-//        ((TextView)findViewById(R.id.root_check)).setText(RootUtil.isDeviceRooted()?"Device Rooted":"Not Rooted");
+        ((TextView)findViewById(R.id.root_check)).setText((new RootUtil()).isDeviceRooted()?"Device Rooted":"Not Rooted");
 
-        RootBeer rootBeer = new RootBeer(this);
-        e("84", "MainHome -> onCreate  ->  : "+rootBeer.isRooted());
-        if (rootBeer.isRooted()) {
-            ((TextView)findViewById(R.id.root_check)).setText("Device Rooted");
-        } else {
-            ((TextView)findViewById(R.id.root_check)).setText("Not Rooted");
-        }
+//        RootBeer rootBeer = new RootBeer(this);
+//        e("84", "MainHome -> onCreate  ->  : "+rootBeer.isRooted());
+//        if (rootBeer.isRooted()) {
+//            ((TextView)findViewById(R.id.root_check)).setText("Device Rooted");
+//        } else {
+//            ((TextView)findViewById(R.id.root_check)).setText("Not Rooted");
+//        }
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
@@ -412,6 +412,78 @@ public class MainHome extends AppCompatActivity {
         }
     };
 
+
+
+    //    fun takeScreenshot(view: View?) {
+//        Log.e("304", " ->  MapScreenActivity -> takeScreenshot : ");
+//        val now = Date()
+//        DateFormat.format("yyyy-MM-dd_hh:mm:ss", now)
+//        try {
+//            // image naming and path  to include sd card  appending name you choose for file
+//            val mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg"
+//
+//            // create bitmap screen capture
+//            val v1 = window.decorView.rootView
+//            v1.isDrawingCacheEnabled = true
+//            val bitmap = Bitmap.createBitmap(v1.drawingCache)
+//            v1.isDrawingCacheEnabled = false
+//            val imageFile = File(mPath)
+//            val outputStream = FileOutputStream(imageFile)
+//            val quality = 100
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream)
+//            outputStream.flush()
+//            outputStream.close()
+//            openScreenshot(imageFile)
+//        } catch (e: Throwable) {
+//            Log.e("324", " ->  MapScreenActivity -> takeScreenshot : "+e.message);
+//            // Several error may come out with file handling or DOM
+//            e.printStackTrace()
+//        }
+//    }
+//    private fun openScreenshot(imageFile: File) {
+//        val intent = Intent()
+//        intent.action = Intent.ACTION_VIEW
+//        val uri: Uri = Uri.fromFile(imageFile)
+//        intent.setDataAndType(uri, "image/*")
+//        startActivity(intent)
+//    }
+//    fun takeScreenshot(view: View?) {
+//        Log.e("336", " ->  MapScreenActivity -> takeScreenshot : ");
+//        val b: Bitmap? = ScreenshotUtils.getScreenShot(findViewById<LinearLayout>(R.id.map_screen_layout))
+////            CUSTOM -> {
+////                //If Screenshot type is CUSTOM
+////                fullPageScreenshot.setVisibility(View.INVISIBLE) //set the visibility to INVISIBLE of first button
+////                hiddenText.setVisibility(View.VISIBLE) //set the visibility to VISIBLE of hidden text
+////                b = ScreenshotUtils.getScreenShot(rootContent)
+////
+////                //After taking screenshot reset the button and view again
+////                fullPageScreenshot.setVisibility(View.VISIBLE) //set the visibility to VISIBLE of first button again
+////                hiddenText.setVisibility(View.INVISIBLE) //set the visibility to INVISIBLE of hidden text
+////            }
+//
+//        //If bitmap is not null
+//        if (b != null) {
+////            showScreenShotImage(b) //show bitmap over imageview
+//            val saveFile: File =
+//                    ScreenshotUtils.getMainDirectoryName(this) //get the path to save screenshot
+//            val file: File = ScreenshotUtils.store(
+//                    b,
+//                    "screenshot.jpg", saveFile
+//            ) //save the screenshot to selected path
+//            shareScreenshot(file) //finally share screenshot
+//        } else  //If bitmap is null show toast message
+//            Toast.makeText(this, "R.string.screenshot_take_failed", Toast.LENGTH_SHORT).show()
+//    }
+//    private fun shareScreenshot(file: File) {
+//        val uri = Uri.fromFile(file) //Convert file path into Uri for sharing
+//        val intent = Intent()
+//        intent.action = Intent.ACTION_SEND
+//        intent.type = "image/*"
+//        intent.putExtra(Intent.EXTRA_SUBJECT, "")
+//        intent.putExtra(Intent.EXTRA_TEXT, "getString()")
+//        intent.putExtra(Intent.EXTRA_STREAM, uri) //pass uri here
+//        startActivity(Intent.createChooser(intent, "getString(R.string.share_title)"))
+//    }
 
 
 }
