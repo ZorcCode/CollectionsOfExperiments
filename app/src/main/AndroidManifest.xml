@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.easylife">
-
-    <!--         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+    <!--
+                 The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the "MyLocation" functionality.    -->
+         location permissions for the "MyLocation" functionality.
+    -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -26,7 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyLife"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".bottomnavigationanim.MotionSense"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -41,7 +42,7 @@
 
         <activity
             android:name=".kotlinfiles.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
         <activity android:name=".bottomnavigationanim.MapScreenActivity" />
         <activity android:name=".bottomnavigationanim.BottomNavTwo" />
         <activity android:name=".bottomnavigationanim.BottomNavigation" />
@@ -71,7 +72,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key"/>
+            android:value="@string/google_maps_key" />
 
         <service
             android:name=".FirebaseNotificaton"

@@ -68,4 +68,9 @@ dependencies {
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
     implementation 'com.scottyab:rootbeer-lib:0.1.0'
+    implementation( 'com.github.thekhaeng:pushdown-anim-click:1.1.1' ){
+        exclude group: 'com.android.support'
+    }
+
+    implementation 'io.github.hariprasanths:bounceview-android:0.2.0'
 }

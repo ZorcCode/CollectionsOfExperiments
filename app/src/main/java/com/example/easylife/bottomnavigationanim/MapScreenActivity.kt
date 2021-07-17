@@ -2,11 +2,8 @@ package com.example.easylife.bottomnavigationanim
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.*
 import android.util.Log
 import android.view.MotionEvent
@@ -15,10 +12,10 @@ import android.view.ViewAnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.easylife.R
+import com.github.hariprasanths.bounceview.BounceView
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -27,19 +24,18 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import io.ghyeok.stickyswitch.widget.StickySwitch
 import io.ghyeok.stickyswitch.widget.StickySwitch.OnSelectedChangeListener
-import java.io.File
 import java.util.*
 
 
 class MapScreenActivity : AppCompatActivity(), OnMapReadyCallback {
 
     lateinit var stickySwitch: StickySwitch
-    lateinit var breakButton: ImageView
+    lateinit var breakButton: LinearLayout
     var play: Boolean = false
     private lateinit var mMap: GoogleMap
     var currentActiveStatus: Status = Status.FirstTime
     private val exitRevealTime: Long = 500
-    private val enterRevealTime: Long = 800
+    private val enterRevealTime: Long = 500
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,7 +107,7 @@ class MapScreenActivity : AppCompatActivity(), OnMapReadyCallback {
                                 runOnUiThread {
                                     enterReveal(R.id.office_screen_layout, false)
                                 }
-                            },10)
+                            }, 10)
                             exitReveal(R.id.break_screen_layout, true)
                         } else
                             enterReveal(R.id.office_screen_layout, false)
@@ -127,7 +123,7 @@ class MapScreenActivity : AppCompatActivity(), OnMapReadyCallback {
             }
     }
 
-    fun vibrate(seconds: Long=200) {
+    fun vibrate(seconds: Long = 200) {
         val v =
             getSystemService(VIBRATOR_SERVICE) as Vibrator
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -191,11 +187,26 @@ class MapScreenActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun breakButtonClick() {
-        breakButton = findViewById(R.id.break_tracking_image)
+        breakButton = findViewById(R.id.break_tracking_card)
         if (!play)
             playButtonWork()
         else
             pauseButtonWork()
+
+
+//        PushDownAnim
+//            .setPushDownAnimTo( findViewById<LinearLayout>(R.id.break_tracking_card) )
+//            .setScale(0.5f)
+//            .setDurationPush(100)
+//            .setDurationRelease(100)
+//            .setOnClickListener { Log.e("210", " ->  MapScreenActivity -> onClick : "); }
+
+        BounceView
+            .addAnimTo(breakButton)
+            .setScaleForPushInAnim(0.5f, 0.5f)
+            .setScaleForPopOutAnim(1.0f, 1.0f)
+            .setPushInAnimDuration(200)
+            .setPopOutAnimDuration(200)
 
         breakButton.setOnClickListener {
             if (play) {
@@ -219,14 +230,14 @@ class MapScreenActivity : AppCompatActivity(), OnMapReadyCallback {
                 currentStatus(Status.Break)
             }
         }
+
     }
 
     private fun pauseButtonWork() {
         play = true
-
         val drawable: Drawable? = ContextCompat.getDrawable(this@MapScreenActivity, R.drawable.play)
         drawable?.setTint(resources.getColor(R.color.red))
-        breakButton.setImageDrawable(drawable)
+        findViewById<ImageView>(R.id.break_tracking_image).setImageDrawable(drawable)
 
     }
 
@@ -235,7 +246,7 @@ class MapScreenActivity : AppCompatActivity(), OnMapReadyCallback {
         val drawable: Drawable? =
             ContextCompat.getDrawable(this@MapScreenActivity, R.drawable.pause)
         drawable?.setTint(resources.getColor(R.color.red))
-        breakButton.setImageDrawable(drawable)
+        findViewById<ImageView>(R.id.break_tracking_image).setImageDrawable(drawable)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
