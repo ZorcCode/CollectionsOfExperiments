@@ -107,12 +107,12 @@ class MapScreenActivity : AppCompatActivity(), OnMapReadyCallback {
                         vibrate()
                         if (currentActiveStatus == Status.Break) {
                             playButtonWork()
-                            exitReveal(R.id.break_screen_layout, true)
                             Handler(Looper.getMainLooper()).postDelayed({
                                 runOnUiThread {
                                     enterReveal(R.id.office_screen_layout, false)
                                 }
-                            }, exitRevealTime - 200)
+                            },10)
+                            exitReveal(R.id.break_screen_layout, true)
                         } else
                             enterReveal(R.id.office_screen_layout, false)
                         currentStatus(Status.Office)
@@ -208,12 +208,12 @@ class MapScreenActivity : AppCompatActivity(), OnMapReadyCallback {
                 pauseButtonWork()
                 if (currentActiveStatus == Status.Office) {
                     stickySwitch.setDirection(StickySwitch.Direction.LEFT, true, false)
-                    exitReveal(R.id.office_screen_layout, false)
                     Handler(Looper.getMainLooper()).postDelayed({
                         runOnUiThread {
                             enterReveal(R.id.break_screen_layout, true)
                         }
-                    }, exitRevealTime - 200)
+                    }, 10)
+                    exitReveal(R.id.office_screen_layout, false)
                 } else
                     enterReveal(R.id.break_screen_layout, true)
                 currentStatus(Status.Break)
